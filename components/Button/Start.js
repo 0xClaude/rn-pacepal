@@ -23,7 +23,7 @@ const Start = ({ running, setRunning, playStart }) => {
             }}
             onPress={() => {
                 setRunning(previous => !previous);
-                playStart();
+                !running ? playStart() : null;
             }}
 
         >

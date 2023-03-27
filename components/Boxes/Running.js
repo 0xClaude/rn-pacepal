@@ -9,40 +9,57 @@ const Running = ({ playStart, playBreak, playComplete, interval, run, breakTime 
     const [time, setTime] = useState(run * 60);
     const [currentInterval, setCurrentInterval] = useState("Running");
     const [nextInterval, setNextInterval] = useState("Break");
-    const [intervalCount, setIntervalCount] = useState(0);
+    const [intervalCount, setIntervalCount] = useState(1);
     const [restTime, setRestTime] = useState(breakTime * 60);
-
 
     useEffect(() => {
         const timer = setInterval(() => {
-            if (intervalCount === interval + 1) {
+            if (currentInterval === "Done") {
+                clearInterval(timer);
+                return;
+            }
+            if (time > 0) {
+                setTime(prev => prev - 1);
+            }
+        }, 1000);
+
+        return () => {
+            clearInterval(timer);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (time === 0) {
+            if (interval === intervalCount) {
                 playComplete();
                 setCurrentInterval("Done");
                 setNextInterval("");
                 setTime(0);
                 return;
             }
-            if (time > 0) {
-                setTime(prev => prev - 1);
+
+            if (currentInterval === "Running") {
+                playBreak();
+                setCurrentInterval("Break");
+                setNextInterval("Running");
+                setTime(restTime);
             } else {
-                if (currentInterval === "Running") {
-                    playBreak();
-                    setCurrentInterval("Break");
-                    setNextInterval("Running");
-                    setTime(restTime);
+                playStart();
+                setCurrentInterval("Running");
+                if (interval === intervalCount + 1) {
+                    setNextInterval("Done");
                 } else {
-                    playStart();
-                    setCurrentInterval("Running");
                     setNextInterval("Break");
-                    setIntervalCount(prev => prev + 1);
-                    setTime(run * 60);
                 }
+                setIntervalCount((prev) => prev + 1);
+                setTime(run * 60);
             }
-        }, 1000);
-        return () => {
-            clearInterval(timer);
+
+
+
         }
-    }, [time]);
+
+    }, [time, intervalCount, currentInterval, restTime]);
 
     return (
         <View
@@ -66,7 +83,7 @@ const Running = ({ playStart, playBreak, playComplete, interval, run, breakTime 
             </Text>
             <Text>
                 {currentInterval !== "Done" ? (
-                    `Next: ${nextInterval} (${currentInterval === 'Running' ? formatTime(restTime) : formatTime(run * 60)}) | Intervals left: ${interval - intervalCount}`
+                    `Next: ${nextInterval} ${nextInterval !== "Done" ? (currentInterval === 'Running' ? formatTime(restTime) : formatTime(run * 60)) : ""} | Intervals left: ${interval - (intervalCount)}`
                 ) : (
                     `You ran ${interval} intervals, ${(run)} minute running and ${breakTime} minutes break. Well done!`
                 )}

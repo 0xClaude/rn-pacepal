@@ -11,7 +11,7 @@ import Start from '../Button/Start'
 
 const Center = ({ dark, running, setRunning }) => {
 
-    const [interval, setInterval] = useState(1);
+    const [interval, setInterval] = useState(2);
     const [run, setRun] = useState(1);
     const [breakTime, setBreakTime] = useState(1);
 
@@ -41,14 +41,17 @@ const Center = ({ dark, running, setRunning }) => {
     }
 
     const playStart = async () => {
+        await startSound.setPositionAsync(0);
         await startSound.playAsync();
     }
 
     const playBreak = async () => {
+        await breakSound.setPositionAsync(0);
         await breakSound.playAsync();
     }
 
     const playComplete = async () => {
+        await endSound.setPositionAsync(0);
         await endSound.playAsync();
     }
 
@@ -102,6 +105,7 @@ const Center = ({ dark, running, setRunning }) => {
                     setBreakTime={setBreakTime}
                 />}
             <Start running={running} setRunning={setRunning} playStart={playStart} />
+
         </SafeAreaView>
     )
 }
