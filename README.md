@@ -5,6 +5,8 @@ This is a simple interval running app built with React Native. It allows users t
 
 <img src="https://github.com/0xClaude/rn-pacepal/blob/main/Screenshots/PacPal-2.jpg?raw=true" />
 
+<img src="https://github.com/0xClaude/rn-pacepal/blob/main/Screenshots/PacePal-3.jpg?raw=true" />
+
 The app also offers a dark theme for night runs.
 
 ## Getting Started
@@ -40,4 +42,4 @@ This project is licensed under the MIT License.
 
 ## Todo
 - Add Lockscreen functionality
-- Add sounds
+- Bugfix sounds
