@@ -6,7 +6,7 @@ import COLORS from '../../styles'
 import { useContext } from 'react'
 import { ThemeContext } from '../../styles/Theme'
 
-const Start = ({ running, setRunning }) => {
+const Start = ({ running, setRunning, playStart }) => {
 
 
     const theme = useContext(ThemeContext);
@@ -23,7 +23,7 @@ const Start = ({ running, setRunning }) => {
             }}
             onPress={() => {
                 setRunning(previous => !previous);
-
+                playStart();
             }}
 
         >

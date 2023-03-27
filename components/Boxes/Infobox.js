@@ -37,7 +37,7 @@ const Infobox = ({ dark, interval, setInterval, run, setRun, breakTime, setBreak
                         width: 200,
                         height: 40,
                     }}
-                    minimumValue={0}
+                    minimumValue={2}
                     maximumValue={10}
                     minimumTrackTintColor={dark ? COLORS.dark.color : COLORS.light.color}
                     maximumTrackTintColor={dark ? COLORS.dark.color : COLORS.light.color}
@@ -74,7 +74,7 @@ const Infobox = ({ dark, interval, setInterval, run, setRun, breakTime, setBreak
                         width: 200,
                         height: 40
                     }}
-                    minimumValue={0}
+                    minimumValue={1}
                     maximumValue={10}
                     minimumTrackTintColor={dark ? COLORS.dark.color : COLORS.light.color}
                     maximumTrackTintColor={dark ? COLORS.dark.color : COLORS.light.color}
@@ -111,7 +111,7 @@ const Infobox = ({ dark, interval, setInterval, run, setRun, breakTime, setBreak
                         width: 200,
                         height: 40
                     }}
-                    minimumValue={0}
+                    minimumValue={1}
                     maximumValue={10}
                     minimumTrackTintColor={dark ? COLORS.dark.color : COLORS.light.color}
                     maximumTrackTintColor={dark ? COLORS.dark.color : COLORS.light.color}
