@@ -42,4 +42,3 @@ This project is licensed under the MIT License.
 
 ## Todo
 - Add Lockscreen functionality
-- Bugfix sounds
