@@ -87,7 +87,7 @@ const Infobox = ({ dark, interval, setInterval, run, setRun, breakTime, setBreak
                         color: dark ? COLORS.dark.color : COLORS.light.color,
                     }}
                 >
-                    {run}
+                    {run} minutes
                 </Text>
 
             </View >
@@ -124,7 +124,7 @@ const Infobox = ({ dark, interval, setInterval, run, setRun, breakTime, setBreak
                         color: dark ? COLORS.dark.color : COLORS.light.color,
                     }}
                 >
-                    {breakTime}
+                    {breakTime} minutes
                 </Text>
 
             </View >
