@@ -10,7 +10,8 @@ const Running = ({ playStart, playBreak, playComplete, interval, run, breakTime 
     const [currentInterval, setCurrentInterval] = useState("Running");
     const [nextInterval, setNextInterval] = useState("Break");
     const [intervalCount, setIntervalCount] = useState(1);
-    const [restTime, setRestTime] = useState(breakTime * 60);
+
+    const restTime = breakTime * 60;
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -61,6 +62,17 @@ const Running = ({ playStart, playBreak, playComplete, interval, run, breakTime 
 
     }, [time, intervalCount, currentInterval, restTime]);
 
+    const nextUp = () => {
+        if (nextInterval === "Done") {
+            return "";
+        }
+        if (currentInterval === "Running") {
+            return formatTime(restTime);
+        } else {
+            return formatTime(run * 60);
+        }
+    }
+
     return (
         <View
             style={{
@@ -83,7 +95,7 @@ const Running = ({ playStart, playBreak, playComplete, interval, run, breakTime 
             </Text>
             <Text>
                 {currentInterval !== "Done" ? (
-                    `Next: ${nextInterval} ${nextInterval !== "Done" ? (currentInterval === 'Running' ? formatTime(restTime) : formatTime(run * 60)) : ""} | Intervals left: ${interval - (intervalCount)}`
+                    `Next: ${nextInterval} ${nextUp()} | Intervals left: ${interval - (intervalCount)}`
                 ) : (
                     `You ran ${interval} intervals, ${(run)} minute running and ${breakTime} minutes break. Well done!`
                 )}
